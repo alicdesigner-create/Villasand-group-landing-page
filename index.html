@@ -7,7 +7,7 @@
   <meta name="description" content="Professional Carpet Cleaning & Commercial and Residential Maintenance. Henry Perez – Manager & Janitorial Expert."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -42,15 +42,6 @@
     @keyframes rise {
       from { opacity: 0; transform: translateY(32px); }
       to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* HEADER */
-    .header {
-      background: var(--white);
-      padding: 1.8rem 2rem 1.4rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     /* SLIDER */
@@ -92,9 +83,9 @@
     .slide-content img { max-width: 80px; }
     .slide-title {
       color: var(--white);
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
       text-shadow: 0 1px 4px rgba(0,0,0,.4);
     }
     .slider-dots {
@@ -105,6 +96,9 @@
       display: flex;
       gap: .4rem;
       z-index: 2;
+      background: rgba(0,0,0,.18);
+      padding: .3rem .5rem;
+      border-radius: 20px;
     }
     .dot {
       width: 7px; height: 7px;
@@ -139,8 +133,9 @@
     /* TAGLINE */
     .tagline {
       padding: 1.3rem 2rem .8rem;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
       color: var(--gray-dark);
       line-height: 1.4;
       text-align: center;
@@ -247,14 +242,14 @@
 <body>
 <div class="card">
 
-  <!-- HEADER -->
-  <div class="header">
-    <img src="images/vs group logo.png" alt="Villasand Group" style="max-width:200px;">
-  </div>
-
   <!-- SLIDER -->
   <div class="slider" id="slider">
-    <div class="slide active" style="background-image:url('images/Commercial Carpet Extraction.png')">
+    <div class="slide active" style="background:#ffffff;">
+      <div class="slide-content">
+        <img src="images/vs group logo.png" alt="Villasand Group" style="max-width:200px;">
+      </div>
+    </div>
+    <div class="slide" style="background-image:url('images/Commercial Carpet Extraction.png')">
       <div class="slide-overlay"></div>
       <div class="slide-content">
         <img src="images/vs group logo white.png" alt="Villasand Group">
@@ -287,6 +282,7 @@
       <div class="dot" onclick="goTo(1)"></div>
       <div class="dot" onclick="goTo(2)"></div>
       <div class="dot" onclick="goTo(3)"></div>
+      <div class="dot" onclick="goTo(4)"></div>
     </div>
   </div>
 
