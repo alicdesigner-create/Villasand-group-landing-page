@@ -43,60 +43,88 @@
       from { opacity: 0; transform: translateY(32px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+
+    /* HEADER */
     .header {
-      background: linear-gradient(145deg, var(--green-dark) 0%, var(--green-main) 55%, var(--green-light) 100%);
-      padding: 2.4rem 2rem 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .header::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(-45deg, transparent, transparent 18px, rgba(255,255,255,.03) 18px, rgba(255,255,255,.03) 36px);
-    }
-    .header-inner { position: relative; z-index: 1; display: flex; align-items: center; gap: 1rem; }
-    .logo-mark {
-      width: 52px; height: 52px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 4px;
-      flex-shrink: 0;
-    }
-    .logo-mark span { background: rgba(255,255,255,.9); border-radius: 3px; }
-    .logo-mark span:nth-child(1) { border-radius: 3px 3px 3px 12px; }
-    .logo-mark span:nth-child(2) { border-radius: 3px 12px 3px 3px; background: rgba(255,255,255,.45); }
-    .logo-mark span:nth-child(3) { border-radius: 12px 3px 3px 3px; background: rgba(255,255,255,.45); }
-    .logo-mark span:nth-child(4) { border-radius: 3px 3px 12px 3px; }
-    .logo-text { color: var(--white); }
-    .logo-text strong { display: block; font-family: 'Playfair Display', serif; font-size: 1.45rem; line-height: 1.1; letter-spacing: -.01em; }
-    .logo-text span { font-size: .78rem; font-weight: 300; opacity: .8; letter-spacing: .06em; text-transform: uppercase; }
-    .person-strip {
-      background: var(--green-dark);
-      padding: .75rem 2rem;
+      background: var(--white);
+      padding: 1.8rem 2rem 1.4rem;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
+      justify-content: center;
+    }
+
+    /* SLIDER */
+    .slider {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+    }
+    .slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity .7s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      padding: 1.5rem;
+    }
+    .slide.active { opacity: 1; }
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(27, 94, 32, 0.45);
+    }
+    .slide-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      text-align: center;
+    }
+    .slide-content img { max-width: 80px; }
+    .slide-title {
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-shadow: 0 1px 4px rgba(0,0,0,.4);
+    }
+    .slider-dots {
+      position: absolute;
+      bottom: .75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: .4rem;
+      z-index: 2;
+    }
+    .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.5);
+      cursor: pointer;
+      transition: background .3s;
+    }
+    .dot.active { background: var(--white); }
+
+    /* PERSON STRIP */
+    .person-strip {
+      background: var(--green-dark);
+      padding: .85rem 2rem;
+      text-align: center;
     }
     .person-name { color: var(--white); font-weight: 600; font-size: 1.05rem; }
     .person-title { color: rgba(255,255,255,.7); font-size: .78rem; }
-    .share-btn {
-      background: rgba(255,255,255,.15);
-      border: 1px solid rgba(255,255,255,.3);
-      color: var(--white);
-      font-family: 'DM Sans', sans-serif;
-      font-size: .7rem;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding: .4rem .9rem;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: background .2s;
-    }
-    .share-btn:hover { background: rgba(255,255,255,.25); }
+
+    /* TOAST */
     .copy-toast {
       display: none;
       text-align: center;
@@ -107,49 +135,25 @@
       letter-spacing: .04em;
     }
     .copy-toast.show { display: block; }
+
+    /* TAGLINE */
     .tagline {
-      padding: 1.5rem 2rem .5rem;
+      padding: 1.3rem 2rem .8rem;
       font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       color: var(--gray-dark);
       line-height: 1.4;
+      text-align: center;
       border-bottom: 1px solid #ebebeb;
     }
-    .services { padding: 1.2rem 2rem 1rem; }
-    .services-label {
-      font-size: .68rem;
-      font-weight: 600;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--green-main);
-      margin-bottom: .75rem;
-    }
-    .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; }
-    .service-pill {
-      display: flex;
-      align-items: center;
-      gap: .45rem;
-      background: #f0f7f0;
-      border-left: 3px solid var(--green-main);
-      border-radius: 6px;
-      padding: .5rem .7rem;
-      font-size: .78rem;
-      color: var(--gray-dark);
-      font-weight: 500;
-      line-height: 1.3;
-      animation: rise .7s cubic-bezier(.22,1,.36,1) both;
-    }
-    .service-pill:nth-child(1) { animation-delay: .05s; }
-    .service-pill:nth-child(2) { animation-delay: .1s; }
-    .service-pill:nth-child(3) { animation-delay: .15s; }
-    .service-pill:nth-child(4) { animation-delay: .2s; }
-    .service-icon { font-size: 1rem; flex-shrink: 0; }
+
+    /* CONTACT */
     .contact-section {
       padding: 1.2rem 2rem;
       display: flex;
       flex-direction: column;
       gap: .65rem;
-      border-top: 1px solid #ebebeb;
+      background: var(--white);
     }
     .contact-btn {
       display: flex;
@@ -161,7 +165,7 @@
       font-size: .88rem;
       font-weight: 500;
       color: var(--gray-dark);
-      background: var(--gray-light);
+      background: var(--white);
       border: 1px solid #e0e0e0;
       transition: all .18s;
       cursor: pointer;
@@ -173,20 +177,28 @@
       transform: translateX(3px);
     }
     .contact-btn .icon {
-      width: 34px; height: 34px;
-      border-radius: 10px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
       background: var(--green-main);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1rem;
       flex-shrink: 0;
-      color: white;
     }
     .contact-btn .label { flex: 1; }
     .contact-btn .label small { display: block; font-size: .7rem; color: #888; font-weight: 400; }
     .contact-btn .arrow { color: #bbb; font-size: .9rem; }
+
+    /* SAVE & SHARE BUTTONS */
+    .btn-area {
+      padding: .2rem 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
+    }
     .save-btn {
-      margin: .2rem 2rem 1.5rem;
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
       text-align: center;
       background: linear-gradient(135deg, var(--green-main), var(--green-dark));
       color: var(--white);
@@ -204,6 +216,25 @@
       text-decoration: none;
     }
     .save-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(46,125,50,.45); }
+    .outline-share-btn {
+      display: block;
+      text-align: center;
+      background: var(--white);
+      color: var(--green-main);
+      border: 2px solid var(--green-main);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: .9rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .9rem;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .outline-share-btn:hover { background: #e8f5e9; }
+
+    /* FOOTER */
     .footer {
       text-align: center;
       padding: 1rem 2rem 1.5rem;
@@ -215,54 +246,120 @@
 </head>
 <body>
 <div class="card">
+
+  <!-- HEADER -->
   <div class="header">
-    <div class="header-inner">
-      <div class="logo-mark">
-        <span></span><span></span>
-        <span></span><span></span>
-      </div>
-      <div class="logo-text">
-        <strong>Villasand<br>Group</strong>
-        <span>Est. Colorado</span>
+    <img src="images/vs group logo.png" alt="Villasand Group" style="max-width:200px;">
+  </div>
+
+  <!-- SLIDER -->
+  <div class="slider" id="slider">
+    <div class="slide active" style="background-image:url('images/Commercial Carpet Extraction.png')">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <img src="images/vs group logo white.png" alt="Villasand Group">
+        <div class="slide-title">Commercial Carpet Extraction</div>
       </div>
     </div>
+    <div class="slide" style="background-image:url('images/Nightly Janitorial Maintenance.png')">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <img src="images/vs group logo white.png" alt="Villasand Group">
+        <div class="slide-title">Nightly Janitorial Maintenance</div>
+      </div>
+    </div>
+    <div class="slide" style="background-image:url('images/Post-Construction Cleaning.png')">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <img src="images/vs group logo white.png" alt="Villasand Group">
+        <div class="slide-title">Post-Construction Cleaning</div>
+      </div>
+    </div>
+    <div class="slide" style="background-image:url('images/Residential Floor Care.png')">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <img src="images/vs group logo white.png" alt="Villasand Group">
+        <div class="slide-title">Residential Floor Care</div>
+      </div>
+    </div>
+    <div class="slider-dots" id="dots">
+      <div class="dot active" onclick="goTo(0)"></div>
+      <div class="dot" onclick="goTo(1)"></div>
+      <div class="dot" onclick="goTo(2)"></div>
+      <div class="dot" onclick="goTo(3)"></div>
+    </div>
   </div>
+
+  <!-- PERSON -->
   <div class="person-strip">
-    <div>
-      <div class="person-name">Henry Perez</div>
-      <div class="person-title">Manager &amp; Janitorial Expert</div>
-    </div>
-    <button class="share-btn" onclick="shareCard()">SHARE</button>
+    <div class="person-name">Henry Perez</div>
+    <div class="person-title">Manager &amp; Janitorial Expert</div>
   </div>
+
   <div class="copy-toast" id="toast">🔗 Link copied!</div>
+
+  <!-- TAGLINE -->
   <div class="tagline">
-    Professional Carpet Cleaning &amp;<br>Commercial &amp; Residential Maintenance
+    Professional Carpet Cleaning | Commercial &amp; Residential Maintenance
   </div>
-  <div class="services">
-    <div class="services-label">Our Services</div>
-    <div class="service-grid">
-      <div class="service-pill"><span class="service-icon">🧹</span>Commercial Carpet Extraction</div>
-      <div class="service-pill"><span class="service-icon">🌙</span>Nightly Janitorial Maintenance</div>
-      <div class="service-pill"><span class="service-icon">🏗️</span>Post-Construction Cleaning</div>
-      <div class="service-pill"><span class="service-icon">🏠</span>Residential Floor Care</div>
-    </div>
-  </div>
+
+  <!-- CONTACT -->
   <div class="contact-section">
     <a class="contact-btn" href="tel:+17204863669">
-      <div class="icon">📞</div>
+      <div class="icon">
+        <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      </div>
       <div class="label">(720) 486-3669<small>Call or text</small></div>
       <span class="arrow">›</span>
     </a>
     <a class="contact-btn" href="mailto:henryhola1994perez@gmail.com">
-      <div class="icon">✉️</div>
+      <div class="icon">
+        <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </div>
       <div class="label">henryhola1994perez@gmail.com<small>Email us</small></div>
       <span class="arrow">›</span>
     </a>
+    <a class="contact-btn" href="sms:+17204863669">
+      <div class="icon">
+        <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+      </div>
+      <div class="label">Send a Text<small>SMS</small></div>
+      <span class="arrow">›</span>
+    </a>
   </div>
-  <a class="save-btn" href="#" onclick="saveContact(event)">💾 Save Contact</a>
-  <div class="footer">Serving the Colorado Front Range · Aurora &amp; Surrounding Areas</div>
+
+  <!-- SAVE & SHARE -->
+  <div class="btn-area">
+    <a class="save-btn" href="#" onclick="saveContact(event)">
+      <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M17 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm2 16H5V5h11.2L19 7.8V19zm-7-7c-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3-1.3-3-3-3zM6 6h9v4H6z"/></svg>
+      Save Contact
+    </a>
+    <button class="outline-share-btn" onclick="shareCard()">Share</button>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    GET YOUR OWN DIGITAL BUSINESS CARD AT <a href="https://tesographics.com" target="_blank" style="color:#2e7d32;font-weight:600;">Tesographics.com</a>
+  </div>
+
 </div>
 <script>
+  // Slider
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  setInterval(() => goTo((current + 1) % slides.length), 4000);
+
+  // Share
   function shareCard() {
     const url = window.location.href;
     if (navigator.share) {
@@ -275,6 +372,8 @@
       });
     }
   }
+
+  // Save Contact
   function saveContact(e) {
     e.preventDefault();
     const vcard = [
